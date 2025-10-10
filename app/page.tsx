@@ -14,8 +14,6 @@ export default async function Page() {
   //const sortedPosts = sortPosts(allBlogs)
   //const posts = allCoreContent(sortedPosts)
   const posts = await getAllPosts()
-  console.log("WP POSTS:", posts)
-
 
   return <main>
     <Toollframe/>
@@ -125,21 +123,6 @@ So, draw creative designs with the variety of brush sizes, vibrant colour select
 </li>
 
 </ol>
-      </div>
-
-      <div className="mt-10 space-y-6">
-  {posts.map((post) => (
-    <div key={post.id} className="border p-4 rounded-lg">
-      <h2
-        className="text-2xl font-bold"
-        dangerouslySetInnerHTML={{ __html: post.title.rendered }}
-      />
-      <div
-        className="text-gray-700"
-        dangerouslySetInnerHTML={{ __html: post.excerpt.rendered }}
-      />
-    </div>
-  ))}
 </div>
     </div>
   </main>

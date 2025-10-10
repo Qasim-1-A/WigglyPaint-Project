@@ -1,5 +1,6 @@
 // app/blog/page.tsx
 
+import { Key } from 'react'
 import { getAllPosts } from '../../lib/wordpress'
 
 export const dynamic = 'force-dynamic'
@@ -16,7 +17,7 @@ export default async function BlogPage() {
     <main className="max-w-3xl mx-auto py-10 px-4">
       <h1 className="text-4xl font-bold mb-6">Blog</h1>
 
-      {initialDisplayPosts.map((post) => (
+      {initialDisplayPosts.map((post: { id: Key | null | undefined; slug: any; title: { rendered: any }; excerpt: { rendered: any } }) => (
         <div key={post.id} className="mb-10 border-b pb-4">
           <a href={`/blog/${post.slug}`}>
             <h2
