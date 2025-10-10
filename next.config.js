@@ -58,6 +58,15 @@ const securityHeaders = [
 const basePath = process.env.BASE_PATH || undefined
 const unoptimized = process.env.UNOPTIMIZED ? true : undefined
 const output = undefined;
+const nextConfig = {
+  experimental: {
+    serverActions: true,
+  },
+  output: 'standalone', // ✅ important for Vercel dynamic builds
+}
+
+module.exports = nextConfig
+
 
 /**
  * @type {import('next/dist/next-server/server/config').NextConfig}
@@ -98,6 +107,7 @@ module.exports = () => {
     eslint: {
   ignoreDuringBuilds: true,
 },
+    
 
 
     webpack: (config, options) => {

@@ -1,3 +1,6 @@
+export const dynamic = 'force-dynamic'
+
+
 //import { getAllPosts, WPPost } from "../lib/wordpress";
 import { getAllPosts } from "../lib/wordpress"
 

@@ -2,6 +2,7 @@ export async function getAllPosts() {
   try {
     const res = await fetch("https://www.wigglypaint.tech/wp-json/wp/v2/posts?_embed", {
       cache: "no-store",
+      next: { revalidate: 0 },
     });
 
     if (!res.ok) {
