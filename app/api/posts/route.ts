@@ -1,36 +1,14 @@
-import { NextResponse } from "next/server";
-
-export async function GET(request: Request) {
+// app/api/posts/route.ts
+export async function GET() {
   try {
-    const url = new URL(request.url);
-    const queryParams = url.searchParams.toString();
-
-    // WordPress API base URL
-    const wpDomain: string = "http://wp.wigglypaint.tech";
-    const wpUrl: string = wpDomain + "/wp-json/wp/v2/posts";
-
-    // Build full URL safely
-    let fullUrl: string;
-    if (queryParams) {
-      fullUrl = wpUrl + "?" + queryParams + "&_embed";
-    } else {
-      fullUrl = wpUrl + "?_embed";
-    }
-
-    // Fetch posts
-    const response = await fetch(fullUrl);
-
-    if (!response.ok) {
-      return NextResponse.json(
-        { error: "Failed to fetch posts" },
-        { status: response.status }
-      );
-    }
-
-    const data = await response.json();
-    return NextResponse.json(data);
+    const res = await fetch("http://wp.wigglypaint.tech/wp-json/wp/v2/posts?_embed", {
+      cache: "no-store",
+    });
+    if (!res.ok) throw new Error("Failed to fetch posts");
+    const data = await res.json();
+    return Response.json(data);
   } catch (error) {
-    console.error(error);
-    return NextResponse.json({ error: "Internal server error" }, { status: 500 });
+    console.error("Proxy fetch error:", error);
+    return Response.json({ error: "Failed to load posts" }, { status: 500 });
   }
 }

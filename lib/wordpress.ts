@@ -1,16 +1,12 @@
 // lib/wordpress.ts
-
-// Fetch all posts via your API proxy
-export async function getAllPosts() {
+export async function getAllPosts(): Promise<any[]> {
   try {
-    const res = await fetch("/api/posts"); // ✅ your proxy
+    const res = await fetch("/api/posts", { cache: "no-store" });
     if (!res.ok) throw new Error("Failed to fetch posts");
     const data = await res.json();
     return data || [];
-  } catch (error) {
-    console.error("Error fetching posts:", error);
+  } catch (err: unknown) {
+    console.error("Error fetching posts:", err);
     return [];
   }
 }
-
-// Fetch a single post by slug directly from WordPress

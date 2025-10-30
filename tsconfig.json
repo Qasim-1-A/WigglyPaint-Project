@@ -41,6 +41,6 @@
     ".contentlayer/generated",
     ".contentlayer/generated/**/*.json",
     ".next/types/**/*.ts"
-  ],
+, "next.config.js"  ],
   "exclude": ["node_modules"]
 }
